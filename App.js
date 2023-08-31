@@ -1764,7 +1764,7 @@ const resData = {
         },
     ],
 };
-// json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+// json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants; 
 const RestaurantCard = (props) => {
 	const {resData} = props;
 	console.log(resData)
