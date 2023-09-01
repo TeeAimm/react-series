@@ -1,38 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const Header = () => {
-    return (
-        <div className="header flex justify-between items-center border-2">
-            <div className="logo-container">
-                <img
-                    className="h-20"
-                    src="https://png.pngtree.com/png-clipart/20230106/original/pngtree-simple-and-modern-food-logo-vector-design-png-image_8876455.png"
-                />
-            </div>
-            <div className="nav-items">
-                <ul className="flex items-center">
-                    <li className="pr-4">Home</li>
-                    <li className="pr-4">About Us</li>
-                    <li className="pr-4">Contact Us</li>
-                    <li className="pr-4">Cart</li>
-                </ul>
-            </div>
-        </div>
-    );
-};
-
-const Body = () => {
-    return (
-        <div className="body">
-            <div className="search-bar">SEARCH</div>
-            <div className="res-container px-52 grid grid-cols-4 gap-4">
-                {resList.map((restaurant)=><RestaurantCard key={restaurant?.info?.id} resData={restaurant}/>)} 
-            </div>
-        </div>
-    );
-};
-//restaurants?.info?.name
 const resList = [
     {
         info: {
@@ -1742,35 +1707,5 @@ const resList = [
         },
     },
 ];
-// json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-const RestaurantCard = (props) => {
-    const { resData } = props;
-    const {name, cloudinaryImageId, cuisines, avgRating, locality} = resData?.info;
-    console.log(resData);
-    return (
-        <div className="border border-gray-50 hover:border-gray-500">
-            <img
-                className="w-full"
-                src={
-                    "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-                    cloudinaryImageId
-                }
-            />
-            <div>{resData?.info?.name}</div>
-            <div>{cuisines?.toString()}</div>
-            <div>{avgRating}</div>
-            <div>{locality}</div>
-        </div>
-    );
-};
 
-const AppLayout = () => {
-    return (
-        <div className="app">
-            <Header />
-            <Body />
-        </div>
-    );
-};
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+export default resList;
