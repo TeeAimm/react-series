@@ -3,12 +3,6 @@ import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
 
-
- 
-
-// json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-
-
 const AppLayout = () => {
     return (
         <div className="app">

@@ -5,7 +5,7 @@ export {CDN_URL} from "../utils/constant"
 const RestaurantCard = (props) => {
     const { resData } = props;
     const {name, cloudinaryImageId, cuisines, avgRating, locality} = resData?.info;
-    console.log(resData);
+    //console.log(resData);
     return (
         <div className="border border-gray-50 hover:border-gray-500">
             <img
