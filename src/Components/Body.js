@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API } from "../utils/constant";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 //import resList from "../utils/restaurant-mock-List";
 
 const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([])
     const [filteredRestaurantsList, setFilteredRestaurantsList] = useState([])
     const [searchText, setSearchText] = useState("")
+    const isOnline = useOnlineStatus()
 
     useEffect(()=>{
         fetchData()
@@ -17,21 +19,25 @@ const Body = () => {
     const fetchData = async () => {
         const res = await fetch(SWIGGY_API)
         const jsonRes = await res.json()
-        console.log(jsonRes, jsonRes?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setListOfRestaurants(jsonRes?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredRestaurantsList(jsonRes?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        console.log(jsonRes, jsonRes?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListOfRestaurants(jsonRes?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilteredRestaurantsList(jsonRes?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
 
     const handleSearchBtn = () => {
-        console.log(searchText)
+    //    console.log(searchText)
         const newList = listOfRestaurants.filter((item)=> item?.info?.name?.toLowerCase().includes(searchText.toLowerCase()))
-        console.log(newList, )
+    //    console.log(newList, )
         setFilteredRestaurantsList(newList)
     }
 
     const handleFilterList = () => {
         const filteredList = listOfRestaurants.filter((item)=> item?.info?.avgRating > 4.5)
         setFilteredRestaurantsList(filteredList)
+    }
+    
+    if(!isOnline){
+        return <div className="m-5 font-semibold text-lg">Oops!! Looks like you are offline!! ❌</div>
     }
 
     return (!listOfRestaurants?.length ? <Shimmer /> :
