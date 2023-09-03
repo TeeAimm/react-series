@@ -16,12 +16,12 @@ const RestaurantMenu = () => {
     const { id, name, costForTwoMessage, cuisines, locality, areaName, city } = resInfo[0]?.card?.card?.info;
     const { itemCards } = resInfo[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
-    // console.log("i -", itemCards);
+    console.log("i -", resInfo[2]?.groupedCard?.cardGroupMap?.REGULAR);
 
     return (
         <>
             <h1>{name}</h1>
-            <div>{cuisines?.toString()}</div>
+            <div>{cuisines?.join(', ')}</div>
             <div>{costForTwoMessage}</div>
             <h5>Menu - </h5>
             <ul>

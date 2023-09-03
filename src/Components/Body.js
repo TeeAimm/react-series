@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withVegLabel} from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API } from "../utils/constant";
@@ -12,6 +12,10 @@ const Body = () => {
     const [searchText, setSearchText] = useState("")
     const isOnline = useOnlineStatus()
 
+    const RestaurantCardWithVegLabel = withVegLabel(RestaurantCard)  // withVegLabel -> Higher order  function
+
+    console.log("test--", listOfRestaurants)
+
     useEffect(()=>{
         fetchData()
     },[])
@@ -19,15 +23,13 @@ const Body = () => {
     const fetchData = async () => {
         const res = await fetch(SWIGGY_API)
         const jsonRes = await res.json()
-        console.log(jsonRes, jsonRes?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        // console.log(jsonRes, jsonRes?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setListOfRestaurants(jsonRes?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setFilteredRestaurantsList(jsonRes?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
 
     const handleSearchBtn = () => {
-    //    console.log(searchText)
         const newList = listOfRestaurants.filter((item)=> item?.info?.name?.toLowerCase().includes(searchText.toLowerCase()))
-    //    console.log(newList, )
         setFilteredRestaurantsList(newList)
     }
 
@@ -58,9 +60,8 @@ const Body = () => {
             <div className="res-container px-52 grid grid-cols-4 gap-4">
                 {filteredRestaurantsList.map((restaurant) => (
                     <Link key={restaurant?.info?.id} to={"/restaurants/"+restaurant?.info?.id}>
-                        <RestaurantCard
-                            resData={restaurant}
-                        />
+                        {/* If veg restaurant, add a label to it */}
+                        {restaurant?.info?.veg ? <RestaurantCardWithVegLabel resData={restaurant}/> : <RestaurantCard resData={restaurant} />}                        
                     </Link>
                 ))}
             </div>
