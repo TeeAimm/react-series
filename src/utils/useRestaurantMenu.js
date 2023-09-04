@@ -9,7 +9,7 @@ const useRestaurantMenu = (resId) => {
     const fatchResDetails = async () => {
         const res = await fetch(MENU_API + resId);
         const jsonRes = await res.json();
-        console.log(jsonRes, jsonRes?.data?.cards);
+        console.log("custom hook - menu api - ", jsonRes?.data?.cards);
         setResInfo(jsonRes?.data?.cards);
     };
     return resInfo

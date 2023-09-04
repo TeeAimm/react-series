@@ -14,8 +14,6 @@ const Body = () => {
 
     const RestaurantCardWithVegLabel = withVegLabel(RestaurantCard)  // withVegLabel -> Higher order  function
 
-    console.log("test--", listOfRestaurants)
-
     useEffect(()=>{
         fetchData()
     },[])
