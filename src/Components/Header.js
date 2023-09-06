@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {LOGO_URL} from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
     const [btnName, setBtnName] = useState("Login")
     const isOnline = useOnlineStatus()
+    const userData = useContext(UserContext )
+    //console.log("ud -- ", userData)
     return (
         <div className="header flex justify-between items-center border-2">
             <div className="logo-container">
