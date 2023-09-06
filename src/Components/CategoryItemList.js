@@ -2,7 +2,6 @@ import React from 'react'
 import { CDN_URL } from './RestaurantCard'
 
 const CategoryItemList = ({ itemCards }) => {
-    console.log(itemCards)
     return (
         <ul className='border-b-8 pb-2 '>
             {itemCards?.map((item) =>
