@@ -10,7 +10,7 @@ const RestaurantCategory = (props) => {
     }
     return (
         <div>
-            <div className='flex justify-between items-baseline py-3' onClick={handleAccordion}>
+            <div className='flex justify-between items-baseline py-3 cursor-pointer border-b-8 ' onClick={handleAccordion}>
                 <div className='font-semibold text-lg'>{title} ({itemCards?.length})</div>
                 <div>{showItem ? '🔼' : '🔽'}</div>
             </div>
